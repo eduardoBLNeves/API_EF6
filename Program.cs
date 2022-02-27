@@ -1,4 +1,5 @@
 using API_EF6.Models;
+using API_EF6.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ builder.Services.AddDbContext<_DbContext>(x => x.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.Parse("10.4.22")
     ));
+
+builder.Services.AddScoped<IClientesRepository,ClientesRepository>();
+
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
